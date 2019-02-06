@@ -1,0 +1,15 @@
+{
+  "name": "challenge-1",
+  "version": "1.0.0",
+  "description": "turn an array of objects with values into an array of all the possible permutations",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^24.1.0"
+  }
+}
