@@ -42,7 +42,7 @@ would return:
 
 See the tests in `__tests__` for examples of the expected output.
 
-The `index.js` file has a function outline for you to write your answer into and push up here, openning a pull request so people can discuss the best implementation. Use the tests in `__tests__/index.test.js` (written for jest) to help you.
+The `index.js` file has a function outline for you to write your answer into and push up here, opening a pull request so people can discuss the best implementation. Use the tests in `__tests__/index.test.js` (written for jest) to help you.
 
 ### to install
 
