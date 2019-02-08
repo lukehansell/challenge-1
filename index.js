@@ -4,7 +4,27 @@
  * @return all possible permutations of objects from `key => value` pairs
  */
 const createPermutations = (inputs) => {
-  return []
+  let permutations = []
+  inputs.forEach(i => {
+    permutations = appendPermutations(i.key, i.values, permutations)
+  })
+  return permutations
+}
+
+const appendPermutations = (key, values, running) => {
+  if (!running.length) {
+    return values.reduce((acc, curr) => {
+      return [...acc, { [key]: curr }]
+    }, [])
+  }
+
+  const updated = []
+  values.forEach(v => {
+    running.forEach(r => {
+      updated.push({ ...r, [key]: v })
+    })
+  })
+  return updated
 }
 
 module.exports = createPermutations
