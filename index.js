@@ -4,15 +4,17 @@
  * @return all possible permutations of objects from `key => value` pairs
  */
 const createPermutations = (inputs) => {
-  let permutations = []
-  inputs.forEach(i => {
-    permutations = appendPermutations(i.key, i.values, permutations)
-  })
-  return permutations
+  return inputs.reduce((runningTotal, currentInput) => appendPermutations(currentInput.key, currentInput.values, runningTotal), [])
 }
 
-const appendPermutations = (key, values, running) => {
-  if (!running.length) {
+/*
+ * appendPermutations accepts a current input lines key and values and will add these to an existing list of permutations
+ * @param `key` the key of the current input iteration
+ * @param `values` the values array for the current input iteration
+ * @return The array of permutations created by combining the current row with the running total
+ */
+const appendPermutations = (key, values, runningTotal) => {
+  if (!runningTotal.length) {
     return values.reduce((acc, curr) => {
       return [...acc, { [key]: curr }]
     }, [])
@@ -20,7 +22,7 @@ const appendPermutations = (key, values, running) => {
 
   const updated = []
   values.forEach(v => {
-    running.forEach(r => {
+    runningTotal.forEach(r => {
       updated.push({ ...r, [key]: v })
     })
   })
