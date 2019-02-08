@@ -4,6 +4,10 @@
  * @return all possible permutations of objects from `key => value` pairs
  */
 const createPermutations = (inputs) => {
+  return solveRecursively(inputs)
+}
+
+const solveIteratively = (inputs) => {
   return inputs.reduce((runningTotal, currentInput) => appendPermutations(currentInput.key, currentInput.values, runningTotal), [])
 }
 
@@ -27,6 +31,22 @@ const appendPermutations = (key, values, runningTotal) => {
     })
   })
   return updated
+}
+
+const solveRecursively = (inputs) => {
+  if (!inputs.length) return []
+
+  const inputClone = [...inputs]
+  const thisRow = inputClone.pop()
+  const subPermutations = solveRecursively(inputClone)
+
+  return thisRow.values.reduce((runningTotal, value) => {
+    if (!subPermutations.length) return [ ...runningTotal, { [thisRow.key]: value } ]
+
+    return [ ...runningTotal, ...subPermutations.map(permutation => {
+      return { ...permutation, [thisRow.key]: value }
+    }) ]
+  }, [])
 }
 
 module.exports = createPermutations
